@@ -11,7 +11,7 @@ import net.minecraft.util.math.Direction;
 public class Harvest {
     public static void init() {
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            if (client.mouse.wasRightButtonClicked()) {
+            if (client.mouse.wasRightButtonClicked() && client.player != null) {
                 HitResult TargetHit = client.crosshairTarget;
                 if (TargetHit.getType() == HitResult.Type.BLOCK) {
                     BlockHitResult tblock = (BlockHitResult) TargetHit;
