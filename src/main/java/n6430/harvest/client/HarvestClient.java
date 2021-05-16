@@ -9,6 +9,6 @@ import net.fabricmc.api.Environment;
 public class HarvestClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
-        Harvest.init();
+        Harvest.register();
     }
 }

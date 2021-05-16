@@ -6,21 +6,24 @@ import net.minecraft.block.CropBlock;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
 
 public class Harvest {
-    public static void init() {
-        ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            if (client.mouse.wasRightButtonClicked() && client.player != null) {
+    public static void register()
+    {
+        ClientTickEvents.END_CLIENT_TICK.register(client ->
+        {
+            if (client.player != null && client.mouse.wasRightButtonClicked())
+            {
                 HitResult TargetHit = client.crosshairTarget;
-                if (TargetHit.getType() == HitResult.Type.BLOCK) {
-                    BlockHitResult tblock = (BlockHitResult) TargetHit;
-                    BlockPos block_pos = tblock.getBlockPos();
-                    Block block = client.world.getBlockState(block_pos).getBlock();
-                    if (block instanceof CropBlock) {
-                        CropBlock cblock = (CropBlock) block;
-                        if (cblock.isMature(client.world.getBlockState(block_pos))) {
-                            client.interactionManager.attackBlock(block_pos, Direction.UP);
+                if (TargetHit.getType() == HitResult.Type.BLOCK)
+                {
+                    BlockPos pos = ((BlockHitResult) TargetHit).getBlockPos();
+                    Block block = client.world.getBlockState(pos).getBlock();
+                    if (block instanceof CropBlock)
+                    {
+                        if ( ((CropBlock) block).isMature(client.world.getBlockState(pos)) )
+                        {
+                            client.interactionManager.attackBlock(pos, ((BlockHitResult) TargetHit).getSide());
                         }
                     }
                 }
