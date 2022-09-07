@@ -15,15 +15,15 @@
   "environment": "*",
   "entrypoints": {
     "client": [
-      "n6430.harvest.client.HarvestClient"
+      "n643064.harvest.client.HarvestClient"
     ]
   },
   "mixins": [
     "harvest.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.11.3",
+    "fabricloader": ">=0.14.9",
     "fabric": "*",
-    "minecraft": "1.16.5"
+    "minecraft": "1.19.2"
   }
 }
