@@ -41,9 +41,9 @@ public class MouseMixin
             final BlockPos pos = ((BlockHitResult) targetHit).getBlockPos();
             final Block block = client.world.getBlockState(pos).getBlock();
 
-            if (block instanceof CropBlock)
+            if (block instanceof final CropBlock cBlock)
             {
-                if ( ((CropBlock) block).isMature(client.world.getBlockState(pos)) )
+                if (cBlock.isMature(client.world.getBlockState(pos)))
                 {
                     client.interactionManager.attackBlock(pos, side);
                     client.player.swingHand(Hand.MAIN_HAND);
