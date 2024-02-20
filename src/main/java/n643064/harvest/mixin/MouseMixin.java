@@ -12,6 +12,7 @@ import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -23,12 +24,13 @@ public class MouseMixin
     public void onMouseButton(long window, int button, int action, int mods, CallbackInfo ci)
     {
         MinecraftClient client = HarvestClient.client;
-        if (client.player != null && !client.player.isSneaking() && button == 1 && action == 1)
+        if (client.currentScreen == null && client.player != null && !client.player.isSneaking() && button == 1 && action == 1)
         {
             harvest(client);
         }
     }
 
+    @Unique
     private void harvest(MinecraftClient client)
     {
         HitResult targetHit = client.crosshairTarget;
