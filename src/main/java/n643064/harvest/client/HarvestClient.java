@@ -6,11 +6,12 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 
 @Environment(EnvType.CLIENT)
-public class HarvestClient implements ClientModInitializer {
-
+public class HarvestClient implements ClientModInitializer
+{
     public static MinecraftClient client;
     @Override
-    public void onInitializeClient() {
+    public void onInitializeClient()
+    {
         client = MinecraftClient.getInstance();
     }
 }
